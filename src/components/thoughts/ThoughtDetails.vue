@@ -3,8 +3,8 @@
     <div v-bind:class="{'thought-container': true, 'right-to-left' : this.direction == 'rtl'}">
       <div class="title">
         <div class="title-text">{{postDetails.data.title}}</div>
-        <div class="owner-wrapper">
-        </div>
+        <div class="owner-wrapper"></div>
+        <div class="timestamp">{{this.postDetails.data.timeStamp | moment("dddd, MMM Do YYYY")}}</div>
       </div>
       <div class="body" v-html="postDetails.data.body"></div>
     </div>
@@ -49,4 +49,19 @@
     padding-left: 5px;
     text-decoration: underline dotted;
   }
+
+  .post-meta{
+    width: 100%;
+  }
+
+  .timestamp{
+    width: 100%;
+  }
+
+  .owner{
+    width: 50px;
+    height: 50px;
+  }
+
+  
 </style>
