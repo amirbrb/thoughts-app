@@ -4,7 +4,7 @@
       <input v-model="title" placeHolder="מחשבה חדשה קורית" dir="auto" class="title"/>
       <textarea ref="editor" class="editor" dir="auto" v-model="content" placeholder="..." contenteditable></textarea>
     </div>
-    <div class="save-post click-button-md" @click="postThought">
+    <div class="save-post" @click="postThought" :disabled="disabled">
       <font-awesome-icon icon="check-circle" class="create-post"/>
     </div>
   </div>
@@ -16,11 +16,17 @@
     mixins: [userState],
     name: 'createPost',
     components: {},
+    computed: {
+      disabled () {
+        return !this.content || !this.title;
+      }
+    },
     methods: {
       convertToHtml (text) {
         return text.replace(/\n/g, '<br />')
       },
       postThought () {
+        if (this.disabled) return;
         this.$store.dispatch('createPost', {
           body: this.convertToHtml(this.content),
           userId: this.userId,
@@ -86,8 +92,12 @@
     right: 20px;
   }
 
+  .save-post[disabled] > .create-post{
+    color: gray;
+  }
+
   .create-post{
     font-size: 44px;
-    color: green;
+    color: #3cb371;
   }
 </style>

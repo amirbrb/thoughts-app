@@ -6,27 +6,25 @@ import App from './App'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBrain, faArrowLeft, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBrain, faArrowLeft, faCheckCircle, faEllipsisV, faShareAlt, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { VueHammer } from 'vue2-hammer'
-import VueQuillEditor from 'vue-quill-editor'
 import Moment from 'vue-moment'
-
 library.add(faBrain)
 library.add(faArrowLeft)
 library.add(faCheckCircle)
+library.add(faEllipsisV)
+library.add(faShareAlt);
+library.add(faEdit);
+library.add(faTrash);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(VueResource)
 Vue.use(VueHammer)
-Vue.use(VueQuillEditor)
 Vue.use(Moment)
 
 Vue.config.productionTip = false
-
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
 
 store.subscribe((mutation, state) => {
   localStorage.setItem('thinking-store', JSON.stringify(state))

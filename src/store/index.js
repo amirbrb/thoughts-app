@@ -6,11 +6,12 @@ Vue.use(Vuex)
 /* eslint-disable */
 export default new Vuex.Store({
 	state: {
-    	myThoughts: []
+		myThoughts: [],
+		counter: 7
 	},
   	getters: {
-    	myThoughts: state => {
-		  	return state.myThoughts
+		myThoughts: state => {
+			return state.myThoughts
 		},
 		feed: state => {
 			return state.feed
@@ -34,13 +35,14 @@ export default new Vuex.Store({
 			let count = state.myThoughts.length
 			post.id = count + 1
 	    	state.myThoughts[count] = post
-  		},
+		},
   		initialiseStore: (state) => {
 			let self = this
   			var storageStore = localStorage.getItem('thinking-store');
   			if(storageStore) {
 		  		Object.assign(state, JSON.parse(storageStore))
-  			}
+			}
+			state.cc = 7;
   		}
 	},
 	actions: {

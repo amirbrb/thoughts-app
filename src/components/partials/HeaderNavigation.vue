@@ -13,7 +13,6 @@
   import userState from '@/user-state'
   import router from '@/router'
   export default {
-    methods: {},
     mixins: [userState],
     data: function () {
       return {
@@ -45,10 +44,11 @@
 		height: 80px;
 		line-height: 80px;
 		font-size: 37px;
-		background: #F5F5F5;
+		background: rgb(255, 99, 42);
 		z-index: 10;
 		text-align: center;
 		font-family: 'Indie Flower', cursive;
+		border-bottom: 3px solid rgb(255, 54, 27)
 	}
 
 	.navigation{
@@ -60,10 +60,6 @@
 
 	.logo{
 		margin-left: 50px;
-	}
-
-	.logo a{
-		text-decoration: none;
 		color: 		#2F4F4F;
 	}
 

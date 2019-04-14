@@ -27,8 +27,10 @@
     height: 60px;
     line-height: 60px;
     width: 60px;
-    background: red;
+    background: rgba(255, 99, 42, 0.8);
     position: fixed;
+    right: 20px;
+    bottom: 15px;
     border-radius: 50px;
     color: white;
     cursor: pointer;

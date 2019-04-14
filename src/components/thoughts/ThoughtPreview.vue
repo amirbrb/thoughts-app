@@ -1,8 +1,10 @@
 <template>
-  <div v-bind:class="{'thought': true, 'right-to-left' : metaData.postStyle.direction == 'rtl'}">
-    <router-link :to="'/post/' + metaData.id" tag="div">
+  <router-link :to="'/post/' + metaData.id" tag="div">
+    <div v-bind:class="{'thought': true, 'right-to-left' : metaData.postStyle.direction == 'rtl'}">
       <div class="title">
-        <div class="title-text">{{metaData.title}}</div>
+        <div class="title-text">
+          {{metaData.title}}
+        </div>
         <div class="owner-wrapper">
           <div class="owner" v-if="!isSelf">
             <img :src="this.getAvatar(metaData.userId)"/>
@@ -10,11 +12,11 @@
         </div>
       </div>
       <div class="body" v-html="crop(metaData.body)"></div>
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 <script>
-  const maxBodyLengthInPreview = 150
+  const maxBodyLengthInPreview = 50
   import imageService from '@/mixins/imageService'
   export default {
     mixins: [imageService],
@@ -46,7 +48,6 @@
     direction: rtl;
   }
 
-
   .thought{
     border: 1px solid #2F4F4F;
     border-radius: 4px;
@@ -55,8 +56,13 @@
     margin-top: 10px;
     margin-left: 8px;
     font-family: 'Varela Round', sans-serif;
+    
+    min-width: 150px;
     max-width: 95%;
-    box-shadow: 3px 3px;
+    min-height: 150px;
+    max-height: 240px;
+
+    box-shadow: 2px 1px;
   }
 
   .title{

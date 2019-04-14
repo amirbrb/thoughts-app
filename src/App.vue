@@ -38,7 +38,7 @@
 <style>
   @import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
   @import '../static/css/site.css';
-  @import 'https://fonts.googleapis.com/css?family=Courgette|Indie+Flower|Varela+Round"';
+  @import 'https://fonts.googleapis.com/css?family=Courgette|Indie+Flower|Varela+Round|Open+Sans+Condensed:300"';
 
   .route-content{
     position: absolute;

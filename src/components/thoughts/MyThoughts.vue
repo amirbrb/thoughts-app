@@ -8,8 +8,7 @@
 <script>
   import ThoughtPreview from './ThoughtPreview.vue'
   export default {
-    components: {ThoughtPreview},
-    methods: {}
+    components: {ThoughtPreview}
   }
 </script>
 <style>
