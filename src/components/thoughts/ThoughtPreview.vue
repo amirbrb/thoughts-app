@@ -1,14 +1,9 @@
 <template>
   <router-link :to="'/post/' + metaData.id" tag="div">
-    <div v-bind:class="{'thought': true, 'right-to-left' : metaData.postStyle.direction == 'rtl'}">
+    <div v-bind:class="{'right-to-left' : metaData.postStyle.direction == 'rtl'}">
       <div class="title">
         <div class="title-text">
           {{metaData.title}}
-        </div>
-        <div class="owner-wrapper">
-          <div class="owner" v-if="!isSelf">
-            <img :src="this.getAvatar(metaData.userId)"/>
-          </div>
         </div>
       </div>
       <div class="body" v-html="crop(metaData.body)"></div>
@@ -20,7 +15,7 @@
   import imageService from '@/mixins/imageService'
   export default {
     mixins: [imageService],
-    props: ['metaData', 'isSelf'],
+    props: ['metaData'],
     data: function () {
       return {
       }
@@ -48,23 +43,6 @@
     direction: rtl;
   }
 
-  .thought{
-    border: 1px solid #2F4F4F;
-    border-radius: 4px;
-    padding: 5px;
-    float: left;
-    margin-top: 10px;
-    margin-left: 8px;
-    font-family: 'Varela Round', sans-serif;
-    
-    min-width: 150px;
-    max-width: 95%;
-    min-height: 150px;
-    max-height: 240px;
-
-    box-shadow: 2px 1px;
-  }
-
   .title{
     float: left;
     line-height: 25px;
@@ -76,24 +54,6 @@
     padding-left: 5px;
     text-decoration: underline dotted;
   }
-
-  .owner-wrapper{
-    width: 17%;
-    float: right;
-  }
-
-  .owner{
-    margin-left: 15px;
-    margin-bottom: 10px;
-    margin-top: 5px;
-  }
-
-  .owner > img{
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    border: 1px solid gray;
-  }   
 
   .body{
     line-height: 30px;

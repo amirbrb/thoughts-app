@@ -7,9 +7,12 @@
     <div class="title">{{postDetails.data.title}}</div>
     <div class="body" v-html="postDetails.data.body"></div>
     <div class="actions-menu">
-      <font-awesome-icon icon="share-alt" />
-      <font-awesome-icon icon="edit" v-if="!isReadOnly"/>
-      <font-awesome-icon icon="trash" v-if="!isReadOnly"/>
+      <font-awesome-icon icon="share-alt" @click="sharePost"/>
+      <router-link :to="'/post/edit/' + postId" v-if="!isReadOnly">
+        <font-awesome-icon icon="edit"
+        ></font-awesome-icon>
+      </router-link>
+      <font-awesome-icon icon="trash" v-if="!isReadOnly" @click="deletePost"/>
     </div>
   </div>
 </template>
@@ -19,7 +22,15 @@
     mixins: [imageService],
     props: ['postId'],
     components: {},
-    methods: {},
+    methods: {
+      sharePost () {
+
+      },
+      deletePost () {
+        this.$store.dispatch('deletePost', this.postId);
+        this.$router.push('/')
+      }
+    },
     created: function () {
       let post = this.$store.getters.getPostDetails(this.postId)
       this.postDetails = post
@@ -81,6 +92,8 @@
 
   .body{
     padding: 10px;
+    height: 70vh;
+    overflow-y: auto;
   } 
 
   .actions-menu{

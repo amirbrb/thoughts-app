@@ -4,7 +4,7 @@
     <div class="route-content">
       <router-view></router-view>
     </div>
-    <FLoatingMenu v-if="$route.name !=='createPost'" 
+    <FLoatingMenu v-if="$route.name !=='createPost' && $route.name !=='editPost'" 
       :bottom="menuPosition.bottom" 
       :right="menuPosition.right">
     </FLoatingMenu>
@@ -52,5 +52,9 @@
   .view-title{
     position: fixed;
     top: 80px;
+  }
+
+  a {
+    color: black;
   }
 </style>

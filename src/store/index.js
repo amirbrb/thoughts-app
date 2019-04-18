@@ -6,7 +6,7 @@ Vue.use(Vuex)
 /* eslint-disable */
 export default new Vuex.Store({
 	state: {
-		myThoughts: [],
+		myThoughts: {},
 		counter: 7
 	},
   	getters: {
@@ -17,9 +17,7 @@ export default new Vuex.Store({
 			return state.feed
 	  	},
 		getPostDetails: (state) => (postId) => {
-			let post = state.myThoughts.find(post => {
-				return post.id == postId
-			})
+			let post = state.myThoughts[postId];
 
 			return {
 				data: post,
@@ -32,13 +30,21 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		setPost: (state, post) => {
-			let count = state.myThoughts.length
+			let count = Object.keys(state.myThoughts).length
 			post.id = count + 1
-	    	state.myThoughts[count] = post
+			state.myThoughts[post.id] = post
+		},
+		editPost: (state, post) => {
+			state.myThoughts[parseInt(post.id)].title = post.title;
+			state.myThoughts[parseInt(post.id)].body = post.body;
+			state.myThoughts[parseInt(post.id)].postStyle = post.postStyle;
+		},
+		deletePost: (state, postId) => {
+			delete state.myThoughts[postId];
 		},
   		initialiseStore: (state) => {
 			let self = this
-  			var storageStore = localStorage.getItem('thinking-store');
+			var storageStore = localStorage.getItem('thinking-store');
   			if(storageStore) {
 		  		Object.assign(state, JSON.parse(storageStore))
 			}
@@ -49,6 +55,13 @@ export default new Vuex.Store({
 		createPost: ({commit, state}, post) => {
 	    	commit('setPost', post)
     		return state.myThoughts
+		},
+		editPost: ({commit, state}, post) => {
+	    	commit('editPost', post)
+    		return state.myThoughts
+		},
+		deletePost: ({commit, state}, postId) => {
+	    	commit('deletePost', postId);
 		}
 	}
 })
